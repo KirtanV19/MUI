@@ -83,15 +83,21 @@ const Register = () => {
                     )}
                 />
                 <Controller control={control} name="role" render={({ field }) => (
-                    <FormControl {...field}>
+                    <FormControl error={!!errors.role}>
                         <FormLabel id="demo-radio-buttons-group-label">Role</FormLabel>
                         <RadioGroup
+                            {...field}
                             aria-labelledby="demo-radio-buttons-group-label"
                             name="radio-buttons-group"
                         >
                             <FormControlLabel value="admin" control={<Radio />} label="Admin" />
                             <FormControlLabel value="User" control={<Radio />} label="User" />
                         </RadioGroup>
+                        {errors.role && (
+                            <span style={{ color: "#f44336", fontSize: 12 }}>
+                                {errors.role.message}
+                            </span>
+                        )}
                     </FormControl>
                 )} />
                 <CustomButton type="submit">
