@@ -44,42 +44,60 @@ const Register = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <Stack spacing={2}>
+            <Stack spacing={2} sx={{ width: 300, }}>
                 <Controller
                     name="name"
                     control={control}
                     render={({ field }) => (
-                        <CustomTextField
-                            {...field}
-                            label="Enter a name"
-                            error={!!errors.name}
-                            helperText={errors.name?.message}
-                        />
+                        <>
+                            <CustomTextField
+                                {...field}
+                                label="Enter a name"
+                                error={!!errors.name}
+                            />
+                            {errors.name && (
+                                <span style={{ color: "#f44336", fontSize: 12 }}>
+                                    {errors.name?.message}
+                                </span>
+                            )}
+                        </>
                     )}
                 />
                 <Controller
                     name="email"
                     control={control}
                     render={({ field }) => (
-                        <CustomTextField
-                            {...field}
-                            label="Enter your email"
-                            error={!!errors.email}
-                            helperText={errors.email?.message}
-                        />
+                        <>
+                            <CustomTextField
+                                {...field}
+                                label="Enter your email"
+                                error={!!errors.email}
+                            />
+                            {errors.email && (
+                                <span style={{ color: "#f44336", fontSize: 12 }}>
+                                    {errors.email?.message}
+                                </span>
+                            )}
+                        </>
                     )}
                 />
                 <Controller
                     name="password"
                     control={control}
                     render={({ field }) => (
-                        <CustomTextField
-                            {...field}
-                            label="Enter your password"
-                            type="password"
-                            error={!!errors.password}
-                            helperText={errors.password?.message}
-                        />
+                        <>
+                            <CustomTextField
+                                {...field}
+                                label="Enter your password"
+                                type="password"
+                                error={!!errors.password}
+                            />
+                            {errors.password && (
+                                <span style={{ color: "#f44336", fontSize: 12 }}>
+                                    {errors.password?.message}
+                                </span>
+                            )}
+                        </>
                     )}
                 />
                 <Controller control={control} name="role" render={({ field }) => (
@@ -95,7 +113,7 @@ const Register = () => {
                         </RadioGroup>
                         {errors.role && (
                             <span style={{ color: "#f44336", fontSize: 12 }}>
-                                {errors.role.message}
+                                {errors.role?.message}
                             </span>
                         )}
                     </FormControl>
@@ -104,7 +122,7 @@ const Register = () => {
                     Register
                 </CustomButton>
             </Stack>
-        </form>
+        </form >
     );
 };
 

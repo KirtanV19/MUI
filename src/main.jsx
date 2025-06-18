@@ -11,7 +11,7 @@ const theme = createTheme({
       main: '#1976d2',
       dark: '#115293',
     },
-    mode: 'dark'
+    mode: 'light'
   }
 })
 
