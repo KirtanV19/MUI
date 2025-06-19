@@ -42,7 +42,7 @@ const Register = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <Stack spacing={2} sx={{ width: 300 }}>
+            <Stack justifyContent="center" alignItems="center" spacing={2} sx={{ width: 300, padding: 2 }}>
                 <Controller
                     name="name"
                     control={control}

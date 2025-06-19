@@ -10,6 +10,7 @@ const theme = createTheme({
         neutral: COLORS.NEUTRAL,
         accent: COLORS.ACCENT,
     },
+    direction: "ltr",
     breakpoints: {
         values: { xs: 0, sm: 600, md: 900, lg: 1200, xl: 1536 },
     },
@@ -46,9 +47,9 @@ const theme = createTheme({
         },
         MuiTextField: {
             defaultProps: {
-                variant: 'outlined',
+                variant: "outlined",
                 fullWidth: true,
-                size: 'small'
+                size: "small",
             },
         },
         MuiOutlinedInput: {
@@ -62,7 +63,7 @@ const theme = createTheme({
                         borderColor: COLORS.PRIMARY.light,
                     },
                     "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: 'black',
+                        borderColor: "black",
                     },
                 },
                 input: {
@@ -70,7 +71,6 @@ const theme = createTheme({
                 },
             },
         },
-
     },
 });
 
