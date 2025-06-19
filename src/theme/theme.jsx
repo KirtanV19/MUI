@@ -50,8 +50,27 @@ const theme = createTheme({
                 fullWidth: true,
                 size: 'small'
             },
+        },
+        MuiOutlinedInput: {
+            styleOverrides: {
+                root: {
+                    borderRadius: 8,
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: COLORS.PRIMARY.main,
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: COLORS.PRIMARY.light,
+                    },
+                    "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: 'black',
+                    },
+                },
+                input: {
+                    padding: "10px 12px",
+                },
+            },
+        },
 
-        }
     },
 });
 
