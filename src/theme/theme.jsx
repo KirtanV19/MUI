@@ -15,7 +15,38 @@ const theme = createTheme({
     },
     components: {
         MuiButton: {
-            styleOverrides: { root: { borderRadius: 12 } },
+            styleOverrides: {
+                root: {
+                    borderRadius: 16,
+                    fontWeight: 800,
+                    backgroundColor: COLORS.PRIMARY.main,
+                    color: 'white',
+                    textTransform: "none",
+                    padding: "8px 20px",
+                    fontSize: "0.9rem",
+                    boxShadow: "none",
+                    "&:hover": {
+                        backgroundColor: COLORS.PRIMARY.dark,
+                        boxShadow: "none",
+                    },
+                },
+                containedPrimary: {
+                    backgroundColor: COLORS.PRIMARY.main,
+                    color: COLORS.SECONDARY,
+                    "&:hover": {
+                        backgroundColor: COLORS.PRIMARY.dark,
+                        color: 'black'
+                    },
+                },
+                containedSecondary: {
+                    backgroundColor: COLORS.SECONDARY.main,
+                    color: COLORS.PRIMARY,
+                },
+            },
+            defaultProps: {
+                disableElevation: true,
+                variant: "contained",
+            },
         },
     },
 });
