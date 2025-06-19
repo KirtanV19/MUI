@@ -26,7 +26,7 @@ const theme = createTheme({
                     borderRadius: 8,
                     fontWeight: 600,
                     textTransform: "none",
-                    padding: "8px 20px",
+                    padding: "8px 4px",
                     fontSize: "0.9rem",
                     boxShadow: "none",
                 },
@@ -44,21 +44,14 @@ const theme = createTheme({
                 },
             },
         },
-
         MuiTextField: {
             defaultProps: {
-                variant: "outlined",
-                size: "small",
+                variant: 'outlined',
                 fullWidth: true,
-                InputProps: {
-                    style: {
-                        borderRadius: 8,
-                        padding: "4px 8px",
-                        height: "40px",
-                    },
-                },
+                size: 'small'
             },
-        },
+
+        }
     },
 });
 
