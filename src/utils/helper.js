@@ -1,4 +1,7 @@
 import * as yup from "yup";
+import LogoutIcon from "@mui/icons-material/Logout";
+import PersonIcon from "@mui/icons-material/Person";
+import AssignmentIcon from "@mui/icons-material/Assignment";
 
 {
   /* Password strength checker */
@@ -47,3 +50,9 @@ export const registerSchema = yup.object().shape({
     .oneOf(["admin", "user"], "Choose a role")
     .required("Role is required"),
 });
+
+export const navItems = [
+  { id: 1, label: "Home", icon: PersonIcon },
+  { id: 2, label: "About", icon: AssignmentIcon },
+  { id: 3, label: "Contact", icon: LogoutIcon },
+];
