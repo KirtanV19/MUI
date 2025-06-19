@@ -1,7 +1,15 @@
 import Register from "./components/Register";
+import { ThemeProvider } from "@emotion/react";
+import theme from "./theme/theme";
+import { CssBaseline } from "@mui/material";
 
 const App = () => {
-  return <Register />;
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Register />
+    </ThemeProvider>
+  );
 };
 
 export default App;
