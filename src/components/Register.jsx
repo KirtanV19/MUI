@@ -1,6 +1,5 @@
 import { useForm, Controller } from "react-hook-form";
 import { useState } from "react";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import CustomButton from "../shared/CustomButton";
 import CustomTextField from "../shared/CustomTextField";
@@ -11,51 +10,12 @@ import {
     FormControlLabel,
     FormControl,
     Radio,
-    InputAdornment
+    InputAdornment,
+    Typography,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-
-const schema = yup.object({
-    name: yup.string().required("Name is required"),
-    email: yup.string().email().required("Email is required"),
-    password: yup
-        .string()
-        .required("Password is required")
-        .min(8, "Password should be at least 8 characters.")
-        .matches(/[a-z]/, "Password must contain at least one lowercase letter")
-        .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
-        .matches(/\d/, "Password must contain at least one number")
-        .matches(
-            /[@$!%*?&#^()\-_=+{};:,<.>]/,
-            "Password must contain at least one special character"
-        ),
-    role: yup.string().required("Role is required"),
-});
-
-// const getPasswordStrength = (password) => {
-//     return [
-//         {
-//             label: "At least 8 characters",
-//             passed: password.length >= 8,
-//         },
-//         {
-//             label: "One lowercase letter",
-//             passed: /[a-z]/.test(password),
-//         },
-//         {
-//             label: "One uppercase letter",
-//             passed: /[A-Z]/.test(password),
-//         },
-//         {
-//             label: "One number [0-9]",
-//             passed: /\d/.test(password),
-//         },
-//         {
-//             label: "One special character",
-//             passed: /[@$!%*?&#^()\-_=+{};:,<.>]/.test(password),
-//         },
-//     ];
-// };
+import { registerSchema } from "../utils/helper";
+import { getPasswordStrength } from "../utils/helper";
 
 const Register = () => {
     const [passwordValue, setPasswordValue] = useState("");
@@ -67,7 +27,7 @@ const Register = () => {
         control,
     } = useForm({
         mode: "onTouched",
-        resolver: yupResolver(schema),
+        resolver: yupResolver(registerSchema),
         defaultValues: {
             name: "",
             email: "",
@@ -127,7 +87,7 @@ const Register = () => {
                             <CustomTextField
                                 {...field}
                                 label="Enter your password"
-                                type={showPassword ? 'text' : 'password'}
+                                type={showPassword ? "text" : "password"}
                                 error={!!errors.password}
                                 onChange={(e) => {
                                     setPasswordValue(e.target.value);
@@ -140,7 +100,9 @@ const Register = () => {
                                                 <span
                                                     onClick={() => setShowPassword((prev) => !prev)}
                                                     style={{ cursor: "pointer" }}
-                                                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                                                    aria-label={
+                                                        showPassword ? "Hide password" : "Show password"
+                                                    }
                                                 >
                                                     {showPassword ? <Visibility /> : <VisibilityOff />}
                                                 </span>
@@ -157,6 +119,19 @@ const Register = () => {
                         </>
                     )}
                 />
+                {passwordValue && (
+                    <Stack spacing={0.5}>
+                        {getPasswordStrength(passwordValue).map(({ label, passed }) => (
+                            <Typography
+                                key={label}
+                                variant="caption"
+                                color={passed ? "success.main" : "text.secondary"}
+                            >
+                                {label}
+                            </Typography>
+                        ))}
+                    </Stack>
+                )}
                 <Controller
                     control={control}
                     name="role"
@@ -187,6 +162,7 @@ const Register = () => {
                         </FormControl>
                     )}
                 />
+
                 <CustomButton type="submit">Register</CustomButton>
             </Stack>
         </form>
