@@ -22,7 +22,8 @@ const Navbar = () => {
     const [openDrawer, setOpenDrawer] = useState(false);
     const [activeItem, setActiveItem] = useState(navItems[0].id);
 
-    const handleOpenDrawer = () => setOpenDrawer(!openDrawer);
+    const handleOpenDrawer = () => setOpenDrawer(true);
+    const handleCloseDrawer = () => setOpenDrawer(false);
 
     const DrawerHeader = styled("div")(({ theme }) => ({
         display: "flex",
@@ -59,9 +60,9 @@ const Navbar = () => {
                     </Box>
                 </Toolbar>
             </AppBar>
-            <Drawer anchor="left" open={openDrawer} onClose={handleOpenDrawer}>
+            <Drawer anchor="left" open={openDrawer} onClose={handleCloseDrawer}>
                 <DrawerHeader>
-                    <IconButton onClick={handleOpenDrawer}>
+                    <IconButton onClick={handleCloseDrawer}>
                         {theme.direction === "ltr" ? <ChevronLeft /> : <ChevronRight />}
                     </IconButton>
                 </DrawerHeader>
