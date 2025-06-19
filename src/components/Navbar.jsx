@@ -12,11 +12,15 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import { navItems } from "../utils/helper";
+import Users from "./Users";
+import Tasks from "./Tasks";
+import Logout from "./Logout";
 
 const Navbar = () => {
     const theme = useTheme();
 
     const [openDrawer, setOpenDrawer] = useState(false);
+    const [activeItem, setActiveItem] = useState(navItems[0].id);
 
     const handleOpenDrawer = () => setOpenDrawer(!openDrawer);
 
@@ -26,6 +30,12 @@ const Navbar = () => {
         padding: theme.spacing(0, 1),
         justifyContent: "flex-end",
     }));
+
+    const componentsMap = {
+        users: <Users />,
+        tasks: <Tasks />,
+        logout: <Logout />,
+    };
 
     return (
         <>
@@ -41,8 +51,8 @@ const Navbar = () => {
                     </IconButton>
 
                     <Box sx={{ display: "flex", gap: 2 }}>
-                        {navItems.map((item) => (
-                            <Button key={item.id} color="inherit">
+                        {navItems.map((item, index) => (
+                            <Button key={index} color="inherit">
                                 {item.label}
                             </Button>
                         ))}
@@ -65,9 +75,9 @@ const Navbar = () => {
                     onClick={handleOpenDrawer}
                     onKeyDown={handleOpenDrawer}
                 >
-                    {navItems.map((item) => (
+                    {navItems.map((item, index) => (
                         <Button
-                            key={item.id}
+                            key={index}
                             fullWidth
                             color="inherit"
                             sx={{
@@ -75,6 +85,8 @@ const Navbar = () => {
                                 textTransform: "none",
                                 gap: 1,
                             }}
+                            onClick={() => setActiveItem(item.id)}
+                            variant={activeItem === item.id ? "outlined" : "text"}
                             startIcon={item.icon ? <item.icon /> : null}
                         >
                             {item.label}
@@ -82,6 +94,7 @@ const Navbar = () => {
                     ))}
                 </Box>
             </Drawer>
+            <Box>{componentsMap[activeItem] || <div>Select an item</div>}</Box>
         </>
     );
 };

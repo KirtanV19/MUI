@@ -52,7 +52,7 @@ export const registerSchema = yup.object().shape({
 });
 
 export const navItems = [
-  { id: 1, label: "Home", icon: PersonIcon },
-  { id: 2, label: "About", icon: AssignmentIcon },
-  { id: 3, label: "Contact", icon: LogoutIcon },
+  { id: "users", label: "Users", icon: PersonIcon },
+  { id: "tasks", label: "Tasks", icon: AssignmentIcon },
+  { id: "logout", label: "Logout", icon: LogoutIcon },
 ];
