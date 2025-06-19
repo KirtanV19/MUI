@@ -1,17 +1,10 @@
-import TextField from "@mui/material/TextField";
-import { styled } from "@mui/material/styles";
+import { TextField } from "@mui/material";
 
-// eslint-disable-next-line no-unused-vars
-const CustomTextField = styled(TextField)(({ theme }) => ({
-    width: "100%",
-    height: 50,
-    "& .MuiInputBase-input": {
-        padding: "12px 14px",
-        fontSize: 16,
-    },
-    "& .MuiInputBase-root": {
-        borderRadius: 4,
-    },
-}));
+const CustomTextField = ({ ...props }) => {
+
+    return (
+        <TextField variant="outlined" size="small"  {...props} />
+    )
+}
 
 export default CustomTextField;

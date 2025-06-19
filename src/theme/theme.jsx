@@ -15,37 +15,48 @@ const theme = createTheme({
     },
     components: {
         MuiButton: {
+            defaultProps: {
+                variant: "contained",
+                size: "medium",
+                disableElevation: true,
+                disableRipple: true,
+            },
             styleOverrides: {
                 root: {
-                    borderRadius: 16,
-                    fontWeight: 800,
-                    backgroundColor: COLORS.PRIMARY.main,
-                    color: 'white',
+                    borderRadius: 8,
+                    fontWeight: 600,
                     textTransform: "none",
                     padding: "8px 20px",
                     fontSize: "0.9rem",
                     boxShadow: "none",
-                    "&:hover": {
-                        backgroundColor: COLORS.PRIMARY.dark,
-                        boxShadow: "none",
-                    },
                 },
-                containedPrimary: {
-                    backgroundColor: COLORS.PRIMARY.main,
-                    color: COLORS.SECONDARY,
-                    "&:hover": {
-                        backgroundColor: COLORS.PRIMARY.dark,
-                        color: 'black'
-                    },
+                text: {
+                    color: COLORS.PRIMARY.main,
+                    fontWeight: 400,
+                    fontSize: "0.875rem",
                 },
-                containedSecondary: {
-                    backgroundColor: COLORS.SECONDARY.main,
-                    color: COLORS.PRIMARY,
+                outlined: {
+                    border: `1px solid ${COLORS.NEUTRAL.main}`,
+                    backgroundColor: "transparent",
+                    "&:hover": {
+                        backgroundColor: COLORS.NEUTRAL.light,
+                    },
                 },
             },
+        },
+
+        MuiTextField: {
             defaultProps: {
-                disableElevation: true,
-                variant: "contained",
+                variant: "outlined",
+                size: "small",
+                fullWidth: true,
+                InputProps: {
+                    style: {
+                        borderRadius: 8,
+                        padding: "4px 8px",
+                        height: "40px",
+                    },
+                },
             },
         },
     },
