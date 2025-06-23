@@ -48,6 +48,21 @@ export const registerSchema = yup.object().shape({
     .required("Role is required"),
 });
 
+export const loginSchema = yup.object().shape({
+  email: yup.string().email().required("Email is required"),
+  password: yup
+    .string()
+    .required("Password is required")
+    .min(8, "Password should be at least 8 characters.")
+    .matches(/[a-z]/, "Password must contain at least one lowercase letter")
+    .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+    .matches(/\d/, "Password must contain at least one number")
+    .matches(
+      /[@$!%*?&#^()\-_=+{};:,<.>]/,
+      "Password must contain at least one special character"
+    ),
+});
+
 export const navItems = [
   { id: "users", label: "Users", icon: PersonIcon },
   { id: "tasks", label: "Tasks", icon: AssignmentIcon },

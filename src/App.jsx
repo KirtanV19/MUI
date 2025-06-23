@@ -10,7 +10,7 @@ import { BrowserRouter } from "react-router";
 import store from "./redux/store";
 import { Provider } from "react-redux";
 import Register from "./components/Register";
-
+import Login from "./components/Login";
 const App = () => {
   return (
     <BrowserRouter>
@@ -24,6 +24,7 @@ const App = () => {
               <Route path="logout" element={<Logout />} />
             </Route>
             <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </ThemeProvider>
       </Provider>

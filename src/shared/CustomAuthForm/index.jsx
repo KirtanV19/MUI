@@ -1,9 +1,7 @@
-// components/CustomAuthForm.jsx
 import { useForm, Controller } from "react-hook-form";
 import {
     Box,
     Stack,
-    Typography,
     InputAdornment,
     RadioGroup,
     FormControl,
