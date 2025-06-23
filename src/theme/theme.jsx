@@ -14,6 +14,10 @@ const theme = createTheme({
     breakpoints: {
         values: { xs: 0, sm: 600, md: 900, lg: 1200, xl: 1536 },
     },
+    zIndex: {
+        drawer: 1300,   // raise drawer
+        appBar: 1400,   // raise app bar above it
+    },
     components: {
         MuiButton: {
             defaultProps: {
