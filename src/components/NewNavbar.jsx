@@ -24,10 +24,10 @@ const NewNavbar = () => {
     const theme = useTheme();
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: "flex" }}>
             {/* Navbar */}
-            <AppBar position="fixed" sx={{ zIndex: theme.zIndex.drawer + 1 }}>
-                <Toolbar >
+            <AppBar position="fixed" sx={{ zIndex: theme.zIndex.drawer + 1, }}>
+                <Toolbar>
                     <Typography component="div" variant="h5">
                         TaskMaster
                     </Typography>
@@ -45,35 +45,32 @@ const NewNavbar = () => {
                     width: drawerWidth,
                     [`& .MuiDrawer-paper`]: {
                         width: drawerWidth,
-                        boxSizing: 'border-box',
+                        boxSizing: "border-box",
                     },
                 }}
             >
-                <Toolbar />
-                <Box
-                    sx={{
-                        overflow: "auto",
-                    }}
-                >
-                    <List>
-                        {navItems.map((item, index) => (
-                            <ListItem key={index} disablePadding>
-                                <ListItemButton>
-                                    <ListItemIcon>{item.icon && <item.icon />}</ListItemIcon>
-                                    <ListItemText primary={item.label} />
-                                </ListItemButton>
-                            </ListItem>
-                        ))}
-                    </List>
-                </Box>
-            </Drawer>
+                <Toolbar /> {/* spacer so list starts below AppBar */}
+
+                <List>
+                    {/* Instead of entire item, destructure the property of it and use, as <icon/> is not acceptable so we rename from icon to Icon */}
+                    {navItems.map(({ label, icon: Icon }, index) => (
+                        <ListItem key={index} disablePadding>
+                            <ListItemButton>
+                                <ListItemIcon>{Icon && <Icon />}</ListItemIcon>
+                                <ListItemText primary={label} />
+                            </ListItemButton>
+                        </ListItem>
+                    ))}
+                </List>
+
+            </Drawer >
 
             {/* Main Content Placeholder */}
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                <Toolbar />
+            <Box component="main" sx={{ flexGrow: 1, p: 3, ml: { sm: `${drawerWidth}px` } }}>
+                <Toolbar /> {/* pushes text below AppBar */}
                 <Typography variant="body1">Your content goes here</Typography>
-            </Box>
-        </Box>
+            </Box >
+        </Box >
     );
 };
 
