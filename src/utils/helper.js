@@ -3,9 +3,6 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 
-{
-  /* Password strength checker */
-}
 export const getPasswordStrength = (password) => {
   return [
     {
