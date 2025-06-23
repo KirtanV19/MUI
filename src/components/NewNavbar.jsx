@@ -4,7 +4,6 @@ import {
     AppBar,
     Toolbar,
     Typography,
-    Button,
     Drawer,
     useTheme,
     List,
@@ -12,16 +11,18 @@ import {
     ListItemButton,
     ListItemText,
     ListItemIcon,
-    Divider,
 } from "@mui/material";
 import { navItems } from "../utils/helper";
 import Users from "./Users";
 import Tasks from "./Tasks";
 import Logout from "./Logout";
+import { Link, useLocation } from "react-router";
+
 const drawerWidth = 200;
 
 const NewNavbar = () => {
     const theme = useTheme();
+    const { pathname } = useLocation()
 
     return (
         <Box sx={{ display: "flex" }}>
@@ -31,10 +32,6 @@ const NewNavbar = () => {
                     <Typography component="div" variant="h5">
                         TaskMaster
                     </Typography>
-                    {/* <Box>
-                        <Button>Login</Button>
-                        <Button>Regsiter</Button>
-                    </Box> */}
                 </Toolbar>
             </AppBar>
 
@@ -53,10 +50,14 @@ const NewNavbar = () => {
 
                 <List>
                     {/* Instead of entire item, destructure the property of it and use, as <icon/> is not acceptable so we rename from icon to Icon */}
-                    {navItems.map(({ label, icon: Icon }, index) => (
+                    {navItems.map(({ id, label, icon: Icon }, index) => (
                         <ListItem key={index} disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>{Icon && <Icon />}</ListItemIcon>
+                            <ListItemButton component={Link} to={`/${id}`} selected={pathname === `${id}`}>
+                                {Icon && (
+                                    <ListItemIcon sx={{ minWidth: 40 }}>
+                                        <Icon />
+                                    </ListItemIcon>
+                                )}
                                 <ListItemText primary={label} />
                             </ListItemButton>
                         </ListItem>
@@ -68,7 +69,9 @@ const NewNavbar = () => {
             {/* Main Content Placeholder */}
             <Box component="main" sx={{ flexGrow: 1, p: 3, ml: { sm: `${drawerWidth}px` } }}>
                 <Toolbar /> {/* pushes text below AppBar */}
-                <Typography variant="body1">Your content goes here</Typography>
+                {pathname === '/users' && <Users />}
+                {pathname === '/tasks' && <Tasks />}
+                {pathname === '/logout' && <Logout />}
             </Box >
         </Box >
     );
