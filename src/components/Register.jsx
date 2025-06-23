@@ -42,9 +42,16 @@ const Register = () => {
     };
 
     return (
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '100vh' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <Stack justifyContent="center" alignItems="center" spacing={2} sx={{ width: 300, padding: 2 }}>
+                <Stack spacing={2} sx={{
+                    width: 300, padding: 2, transition: 'transform 0.25s ease, box-shadow 0.25s ease', // smooth-out both props
+                    transform: 'scale(1)',  // starting state
+                    ':hover': {
+                        boxShadow: 2,
+                        transform: 'scale(1.05)', // end state
+                    },
+                }}>
                     <Controller
                         name="name"
                         control={control}
@@ -173,7 +180,3 @@ const Register = () => {
 };
 
 export default Register;
-
-/*
-
-        */

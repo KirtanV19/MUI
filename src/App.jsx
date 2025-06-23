@@ -9,6 +9,7 @@ import Logout from "./components/Logout";
 import { BrowserRouter } from "react-router";
 import store from "./redux/store";
 import { Provider } from "react-redux";
+import Register from "./components/Register";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
               <Route path="tasks" element={<Tasks />} />
               <Route path="logout" element={<Logout />} />
             </Route>
+            <Route path="/register" element={<Register />} />
           </Routes>
         </ThemeProvider>
       </Provider>
