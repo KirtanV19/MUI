@@ -13,10 +13,7 @@ import {
     ListItemIcon,
 } from "@mui/material";
 import { navItems } from "../utils/helper";
-import Users from "./Users";
-import Tasks from "./Tasks";
-import Logout from "./Logout";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, Outlet } from "react-router";
 
 const drawerWidth = 200;
 
@@ -68,10 +65,8 @@ const NewNavbar = () => {
 
             {/* Main Content Placeholder */}
             <Box component="main" sx={{ flexGrow: 1, p: 3, ml: { sm: `${drawerWidth}px` } }}>
-                <Toolbar /> {/* pushes text below AppBar */}
-                {pathname === '/users' && <Users />}
-                {pathname === '/tasks' && <Tasks />}
-                {pathname === '/logout' && <Logout />}
+                <Toolbar />       {/* pushes below AppBar */}
+                <Outlet />         {/* ← child routes render here */}
             </Box >
         </Box >
     );
