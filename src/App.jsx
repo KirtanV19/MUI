@@ -6,20 +6,26 @@ import Users from "./components/Users";
 import Tasks from "./components/Tasks";
 import NewNavbar from "./components/NewNavbar";
 import Logout from "./components/Logout";
+import { BrowserRouter } from "react-router";
+import store from "./redux/store";
+import { Provider } from "react-redux";
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Routes>
-        <Route path="/" element={<NewNavbar />}>
-          {/* <Route index element={<h2>Home</h2>} /> */}
-          <Route path="users" element={<Users />} />
-          <Route path="tasks" element={<Tasks />} />
-          <Route path="logout" element={<Logout />} />
-        </Route>
-      </Routes>
-    </ThemeProvider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Routes>
+            <Route path="/" element={<NewNavbar />}>
+              <Route path="users" element={<Users />} />
+              <Route path="tasks" element={<Tasks />} />
+              <Route path="logout" element={<Logout />} />
+            </Route>
+          </Routes>
+        </ThemeProvider>
+      </Provider>
+    </BrowserRouter>
   );
 };
 
