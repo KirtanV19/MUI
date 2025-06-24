@@ -1,6 +1,6 @@
 import CustomAuthForm from "../shared/CustomAuthForm";
 import { registerFields } from "../utils/formFields";
-import { registerSchema } from "../utils/helper";
+import { registerSchema } from "../utils/validations";
 
 const Register = () => {
     const handleRegister = (data) => {

@@ -3,7 +3,7 @@
 
 import CustomAuthForm from "../shared/CustomAuthForm"
 import { loginFields } from "../utils/formFields"
-import { loginSchema } from "../utils/helper"
+import { loginSchema } from "../utils/validations"
 const Login = () => {
 
     const handleSubmit = (data) => {

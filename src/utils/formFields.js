@@ -39,3 +39,24 @@ export const loginFields = [
     component: "password",
   },
 ];
+
+export const forgotPassFields = [
+  {
+    name: "email",
+    label: "Enter your email",
+    type: "email",
+    component: "text",
+  },
+  {
+    name: "new",
+    label: "Enter your new password",
+    type: "password",
+    component: "password",
+  },
+  {
+    name: "confirm",
+    label: "Enter your confirm password",
+    type: "password",
+    component: "password",
+  },
+];
