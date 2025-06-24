@@ -15,8 +15,8 @@ const forgotPasswordSchema = yup.object().shape({
                 if (!value) return false;
                 try {
                     const response = await api.USERS.getAll({ params: { email: value } });
-                    console.log("response: ", response);
-                    // return response;
+                    console.log("response: ", response[0]);
+                    return response;
                 } catch (err) {
                     console.log('err', err)
                     return false;
@@ -26,18 +26,19 @@ const forgotPasswordSchema = yup.object().shape({
     new: yup
         .string()
         .required("New password is required")
-        .min(6, "Password must be at least 6 characters")
+        .min(8, "Password must be at least 8 characters")
         .test(
             "isDifferentFromOldPassword",
             "New password must be different from old password",
             async function (value) {
+                console.log('value', value)
                 const { email } = this.parent;
                 if (!value || !email) return false;
                 try {
                     const response = await api.USERS.getAll({ params: { email } });
-                    console.log("response: ", response);
-                    // const user = response.data[0];
-                    // return user && user.password !== value;
+                    console.log("New response: ", response[0]);
+                    const user = response[0];
+                    return user && user.password !== value;
                 } catch (err) {
                     console.log('err', err)
                     return false;
