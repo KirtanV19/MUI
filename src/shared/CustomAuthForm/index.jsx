@@ -14,7 +14,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import CustomButton from '../CustomButton/index'
 import CustomTextField from '../CustomTextField/index'
 import { useState } from "react";
-
+import { getPasswordStrength } from "../../utils/helper";
 const CustomAuthForm = ({ fields, schema, onSubmit, label }) => {
     const [passwordValue, setPasswordValue] = useState("");
     const [showPassword, setShowPassword] = useState(false);
@@ -52,8 +52,8 @@ const CustomAuthForm = ({ fields, schema, onSubmit, label }) => {
                         },
                     }}
                 >
-                    {fields.map((fieldConfig) => {
-                        const { name, label, type, component, options } = fieldConfig;
+                    {fields.map((field) => {
+                        const { name, label, type, component, options } = field;
 
                         return (
                             <Controller
@@ -145,7 +145,17 @@ const CustomAuthForm = ({ fields, schema, onSubmit, label }) => {
                     {/* Optional: Password strength */}
                     {passwordValue && (
                         <Stack spacing={0.5}>
-                            {/* Optional logic from getPasswordStrength */}
+                            {getPasswordStrength(passwordValue).map((strength, index) => (
+                                <span
+                                    key={index}
+                                    style={{
+                                        color: strength.passed ? "green" : "red",
+                                        fontSize: 12,
+                                    }}
+                                >
+                                    {strength.label}
+                                </span>
+                            ))}
                         </Stack>
                     )}
 
