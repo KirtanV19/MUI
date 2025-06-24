@@ -3,6 +3,7 @@ import CustomAuthForm from "../shared/CustomAuthForm/index";
 import { forgotPassFields } from "../utils/formFields";
 import { api } from "../api/client";
 
+/*
 const forgotPasswordSchema = yup.object().shape({
     email: yup
         .string()
@@ -37,8 +38,8 @@ const forgotPasswordSchema = yup.object().shape({
                 try {
                     const response = await api.USERS.getAll({ params: { email } });
                     console.log("New response: ", response[0]);
-                    const user = response[0];
-                    return user && user.password !== value;
+                    const user = response?.[0];
+                    return user?.password && user.password !== value;
                 } catch (err) {
                     console.log('err', err)
                     return false;
@@ -50,9 +51,41 @@ const forgotPasswordSchema = yup.object().shape({
         .oneOf([yup.ref("new"), null], "Passwords must match")
         .required("Confirm password is required"),
 });
+*/
+
+const forgotPasswordSchema = yup.object().shape({
+    email: yup.string().email("Invalid email").required("Email is required"),
+    new: yup.string().required("New password is required").min(8),
+    confirm: yup
+        .string()
+        .oneOf([yup.ref("new"), null], "Passwords must match")
+        .required("Confirm password is required"),
+});
 
 const ForgotPassword = () => {
-    const handleForgot = (values) => console.log("values", values);
+    const handleForgot = async (values) => {
+        console.log('values', values)
+        try {
+            const response = await api.USERS.getAll({ params: { email: values.email } });
+            console.log('response', response?.[0])
+            const user = response?.[0];
+
+            if (!user) {
+                alert("User with this email does not exist");
+                return;
+            }
+
+            if (user.password === values.new) {
+                alert("New password must be different from old password");
+                return;
+            }
+            await api.USERS.patch({ id: user.id, data: { password: values.new } })
+            // Proceed with password reset logic here
+            console.log("Reset password values", values);
+        } catch (error) {
+            console.error("Error during password reset", error);
+        }
+    };
     return (
         <CustomAuthForm
             label="Reset Password"
