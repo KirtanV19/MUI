@@ -25,5 +25,46 @@
       "id": 3
     }
   ],
-  "tasks": []
+  "tasks": [
+    {
+      "title": "1",
+      "description": "1",
+      "dueDate": "2025-06-19",
+      "status": "accepted",
+      "userId": 1750070869853,
+      "id": 1
+    },
+    {
+      "title": "2",
+      "description": "3",
+      "dueDate": "2025-06-23",
+      "status": "accepted",
+      "userId": 1750154236758,
+      "id": 2
+    },
+    {
+      "title": "2",
+      "description": "2",
+      "dueDate": "2025-06-26",
+      "status": "rejected",
+      "userId": 1750070869853,
+      "id": 3
+    },
+    {
+      "title": "3",
+      "description": "4",
+      "dueDate": "2025-06-27",
+      "status": "accepted",
+      "userId": 1750154236758,
+      "id": 4
+    },
+    {
+      "title": "4",
+      "description": "sample",
+      "dueDate": "2025-07-11",
+      "status": "rejected",
+      "userId": 1750154236758,
+      "id": 5
+    }
+  ]
 }

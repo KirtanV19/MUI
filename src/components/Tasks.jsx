@@ -1,12 +1,23 @@
-import React from 'react'
+import { useEffect } from "react";
+import CustomTable from "../shared/CustomTable";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchTasks } from "../redux/slices/task.slices";
 
-const Tasks = () => {
+const Users = () => {
+    const { items } = useSelector((state) => state.users);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchTasks({}));
+    }, [dispatch]);
+
+    console.log("Tasks:- ", items);
     return (
         <div>
+            {/* <CustomTable /> */}
             <h1>Tasks</h1>
-            <p>Task component</p>
         </div>
-    )
-}
+    );
+};
 
-export default Tasks
+export default Users;

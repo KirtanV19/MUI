@@ -51,6 +51,46 @@ const forgotPasswordSchema = yup.object().shape({
         .required("Confirm password is required"),
 });
 
+const ForgotPassword = () => {
+
+    const handleForgot = async (values) => {
+        try {
+            // 1. Find the user by email
+            const response = await api.USERS.getAll({
+                params: { email: values.email },
+            });
+            const user = response?.[0];
+
+            if (!user) {
+                alert("User with this email does not exist");
+                return;
+            }
+
+            // 2. Patch the user's password
+            await api.USERS.patch({
+                id: user.id,
+                data: { password: values.new },
+            });
+
+            alert("Password updated successfully!");
+        } catch (error) {
+            console.error("Error during password reset", error);
+            alert("Failed to update password.");
+        }
+    };
+
+    return (
+        <CustomAuthForm
+            label="Reset Password"
+            fields={forgotPassFields}
+            onSubmit={handleForgot}
+            schema={forgotPasswordSchema}
+        />
+    );
+};
+
+export default ForgotPassword;
+
 /*
 const forgotPasswordSchema = yup.object().shape({
     email: yup.string().email("Invalid email").required("Email is required"),
@@ -61,7 +101,6 @@ const forgotPasswordSchema = yup.object().shape({
         .required("Confirm password is required"),
 });
 */
-
 
 /*
 const handleForgot = async (values) => {
@@ -94,39 +133,3 @@ const handleForgot = async (values) => {
         console.log("values", values);
     }
 */
-
-const ForgotPassword = () => {
-    const handleForgot = async (values) => {
-        try {
-            // 1. Find the user by email
-            const response = await api.USERS.getAll({ params: { email: values.email } });
-            const user = response?.[0];
-
-            if (!user) {
-                alert("User with this email does not exist");
-                return;
-            }
-
-            // 2. Patch the user's password
-            await api.USERS.patch({
-                id: user.id,
-                data: { password: values.new }
-            });
-
-            alert("Password updated successfully!");
-        } catch (error) {
-            console.error("Error during password reset", error);
-            alert("Failed to update password.");
-        }
-    };
-    return (
-        <CustomAuthForm
-            label="Reset Password"
-            fields={forgotPassFields}
-            onSubmit={handleForgot}
-            schema={forgotPasswordSchema}
-        />
-    );
-};
-
-export default ForgotPassword;
