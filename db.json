@@ -1,4 +1,29 @@
 {
-  "users": [],
+  "users": [
+    {
+      "name": "Admin",
+      "email": "admin@gmail.com",
+      "password": "Admin@123",
+      "role": "admin",
+      "userId": 1750070856974,
+      "id": 1
+    },
+    {
+      "name": "Test",
+      "email": "test@gmail.com",
+      "password": "Test@123",
+      "role": "user",
+      "userId": 1750070869853,
+      "id": 2
+    },
+    {
+      "name": "Kirtan",
+      "email": "kirtan@gmail.com",
+      "password": "Kirtan@1",
+      "role": "user",
+      "userId": 1750154236758,
+      "id": 3
+    }
+  ],
   "tasks": []
 }

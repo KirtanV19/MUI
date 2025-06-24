@@ -16,7 +16,7 @@ const forgotPasswordSchema = yup.object().shape({
                 try {
                     const response = await api.USERS.getAll({ params: { email: value } });
                     console.log("response: ", response);
-                    // return response.data.length > 0;
+                    // return response;
                 } catch (err) {
                     console.log('err', err)
                     return false;
@@ -34,7 +34,7 @@ const forgotPasswordSchema = yup.object().shape({
                 const { email } = this.parent;
                 if (!value || !email) return false;
                 try {
-                    const response = await api.USERS.getAll({ params: { email: value } });
+                    const response = await api.USERS.getAll({ params: { email } });
                     console.log("response: ", response);
                     // const user = response.data[0];
                     // return user && user.password !== value;
