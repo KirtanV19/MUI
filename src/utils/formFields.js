@@ -1,5 +1,3 @@
-// utils/formFields.js
-
 export const registerFields = [
   {
     name: "name",
