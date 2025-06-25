@@ -2,14 +2,16 @@ import { useEffect } from "react";
 import CustomTable from "../shared/CustomTable";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUsers } from "../redux/slices/user.slices";
+import useFilter from "../hooks/useFilter";
 
 const Users = () => {
     const { items, loading, error } = useSelector((state) => state.users);
     const dispatch = useDispatch();
+    const { filter, setFilter } = useFilter();
 
     useEffect(() => {
-        dispatch(fetchUsers({}));
-    }, [dispatch]);
+        dispatch(fetchUsers({ params: { ...filter } }));
+    }, [dispatch, filter]);
 
     console.log("Users:- ", items);
 

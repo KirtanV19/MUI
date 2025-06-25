@@ -81,24 +81,24 @@ const theme = createTheme({
             },
         },
         /*
-            MuiDataGrid: {
-                defaultProps: {
-                    autoHeight: true,
-                },
-                styleOverrides: {
-                    columnHeaders: {
-                        fontWeight: 700,
-                        fontSize: "1rem",
-                        backgroundColor: "#f5f5f5",
+                MuiDataGrid: {
+                    defaultProps: {
+                        autoHeight: true,
                     },
-                    row: {
-                        "& .hover": {
-                            backgroundColor: COLORS.ACCENT.main,
+                    styleOverrides: {
+                        columnHeaders: {
+                            fontWeight: 700,
+                            fontSize: "1rem",
+                            backgroundColor: "#f5f5f5",
+                        },
+                        row: {
+                            "& .hover": {
+                                backgroundColor: COLORS.ACCENT.main,
+                            },
                         },
                     },
                 },
-            },
-        */
+            */
         MuiDataGrid: {
             styleOverrides: {
                 root: {
@@ -109,8 +109,8 @@ const theme = createTheme({
 
                     // DataGrid internal class-based overrides
                     "& .MuiDataGrid-columnHeader": {
-                        backgroundColor: 'white',
-                        color: 'black',
+                        backgroundColor: "white",
+                        color: "black",
                         fontSize: "1.1rem",
                         borderBottom: "1px solid #ccc",
                         "--unstable_DataGrid-headWeight": 900, // as fontWeight: 900 is not works properly.
@@ -148,8 +148,12 @@ const theme = createTheme({
                 autoHeight: true,
                 disableRowSelectionOnClick: true,
             },
+        },
+        MuiSelect: {
+            defaultProps: {
+                variant: 'outlined'
+            }
         }
-
     },
 });
 
