@@ -11,7 +11,7 @@ const Users = () => {
     const { items, loading, error } = useSelector((state) => state.users);
     const dispatch = useDispatch();
     const { filter, setFilter } = useFilter();
-    const { limit, setLimit } = useLimit()
+    const { limit, setLimit } = useLimit();
 
     useEffect(() => {
         dispatch(fetchUsers({ params: { ...filter } }));
@@ -21,6 +21,12 @@ const Users = () => {
         console.log("limit updated:", limit);
     }, [limit]);
 
+    useEffect(() => {
+        setFilter((prev) => ({
+            ...prev,
+            _limit: limit,
+        }));
+    }, [limit, setFilter]);
     console.log("Users:- ", items);
 
     const columns = [
