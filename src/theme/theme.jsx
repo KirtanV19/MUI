@@ -15,8 +15,8 @@ const theme = createTheme({
         values: { xs: 0, sm: 600, md: 900, lg: 1200, xl: 1536 },
     },
     zIndex: {
-        drawer: 1300,   // raise drawer
-        appBar: 1400,   // raise app bar above it
+        drawer: 1300, // raise drawer
+        appBar: 1400, // raise app bar above it
     },
     components: {
         MuiButton: {
@@ -80,6 +80,76 @@ const theme = createTheme({
                 },
             },
         },
+        /*
+            MuiDataGrid: {
+                defaultProps: {
+                    autoHeight: true,
+                },
+                styleOverrides: {
+                    columnHeaders: {
+                        fontWeight: 700,
+                        fontSize: "1rem",
+                        backgroundColor: "#f5f5f5",
+                    },
+                    row: {
+                        "& .hover": {
+                            backgroundColor: COLORS.ACCENT.main,
+                        },
+                    },
+                },
+            },
+        */
+        MuiDataGrid: {
+            styleOverrides: {
+                root: {
+                    border: "1px solid #e0e0e0",
+                    borderRadius: 8,
+                    fontSize: "0.875rem",
+                    fontFamily: "Roboto, sans-serif",
+
+                    // DataGrid internal class-based overrides
+                    "& .MuiDataGrid-columnHeader": {
+                        backgroundColor: 'white',
+                        color: 'black',
+                        fontSize: "1.1rem",
+                        borderBottom: "1px solid #ccc",
+                        "--unstable_DataGrid-headWeight": 900, // as fontWeight: 900 is not works properly.
+                    },
+                    "& .MuiDataGrid-cell": {
+                        padding: "8px",
+                        borderBottom: "1px solid #f0f0f0",
+                    },
+                    // "& .MuiDataGrid-row:hover": {
+                    //     backgroundColor: COLORS.PRIMARY.light,
+                    // },
+                    "& .MuiDataGrid-footerContainer": {
+                        borderTop: "1px solid #e0e0e0",
+                        backgroundColor: "#f9f9f9",
+                    },
+                    "& .MuiDataGrid-toolbarContainer": {
+                        padding: "8px 16px",
+                        borderBottom: "1px solid #e0e0e0",
+                    },
+                    // "& .MuiDataGrid-columnSeparator": {
+                    //     display: "none", // Removes column resize handle
+                    // },
+                    "& .MuiDataGrid-sortIcon": {
+                        color: COLORS.WARNING.main,
+                    },
+                    // "& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-cell:focus": {
+                    //     outline: "none",
+                    // },
+                    // "& .MuiDataGrid-selectedRowCount": {
+                    //     visibility: "hidden",
+                    // },
+                },
+            },
+            defaultProps: {
+                autoHeight: true,
+                disableRowSelectionOnClick: true,
+            },
+        }
+
     },
 });
 

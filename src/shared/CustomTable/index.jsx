@@ -1,7 +1,7 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { Box, CircularProgress, Typography } from "@mui/material";
 
-const CustomTable = ({ data = [], columns = [], loading = false, height = 500 }) => {
+const CustomTable = ({ data = [], columns = [], loading, height = 500, ...props }) => {
     return (
         <Box sx={{ height, width: "100%" }}>
             {loading ? (
@@ -16,12 +16,7 @@ const CustomTable = ({ data = [], columns = [], loading = false, height = 500 })
                 <DataGrid
                     rows={data}
                     columns={columns}
-                    sx={{
-                        "& .MuiDataGrid-columnHeaders": {
-                            fontWeight: "bold",
-                            fontSize: "1rem",
-                        },
-                    }}
+                    {...props}
                 />
             )}
         </Box>
