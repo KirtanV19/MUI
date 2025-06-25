@@ -13,6 +13,7 @@ export const fetchTasks = createAsyncThunk(
     }
   }
 );
+
 const tasks = createSlice({
   name: "tasks",
   initialState: {

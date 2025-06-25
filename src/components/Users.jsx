@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchUsers } from "../redux/slices/user.slices";
 
 const Users = () => {
-    const { items } = useSelector((state) => state.users);
+    const { items, loading, error } = useSelector((state) => state.users);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -12,10 +12,20 @@ const Users = () => {
     }, [dispatch]);
 
     console.log("Users:- ", items);
+
+    const columns = [
+        { field: "name", headerName: "Name", flex: 1 },
+        { field: "email", headerName: "Email", flex: 1 },
+        { field: "role", headerName: "Role", flex: 1 },
+    ];
+
+    if (error) {
+        return <p style={{ color: "red", textAlign: "center" }}>Error: {error}</p>;
+    }
+
     return (
-        <div>
-            {/* <CustomTable /> */}
-            <h1>Users</h1>
+        <div style={{ padding: 20 }}>
+            <CustomTable data={items} columns={columns} loading={loading} />
         </div>
     );
 };

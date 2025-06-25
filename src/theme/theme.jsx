@@ -47,6 +47,11 @@ const theme = createTheme({
                         backgroundColor: COLORS.NEUTRAL.light,
                     },
                 },
+                sizeSmall: {
+                    fontSize: "0.8rem",
+                    padding: "4px 8px",
+                    minHeight: "32px",
+                },
             },
         },
         MuiTextField: {
