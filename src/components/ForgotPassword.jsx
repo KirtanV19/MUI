@@ -52,7 +52,6 @@ const forgotPasswordSchema = yup.object().shape({
 });
 
 const ForgotPassword = () => {
-
     const handleForgot = async (values) => {
         try {
             // 1. Find the user by email

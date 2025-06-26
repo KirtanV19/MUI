@@ -1,4 +1,4 @@
-import CustomButton from '../shared/CustomButton'
+import CustomButton from "../shared/CustomButton";
 
 const Demo = () => {
     return (
@@ -8,7 +8,7 @@ const Demo = () => {
             <CustomButton variant="text">Delete</CustomButton>
             <CustomButton>Submit</CustomButton>
         </>
-    )
-}
+    );
+};
 
 export default Demo;

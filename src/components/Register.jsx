@@ -8,7 +8,14 @@ const Register = () => {
         // Send to json-server or backend
     };
 
-    return <CustomAuthForm fields={registerFields} schema={registerSchema} onSubmit={handleRegister} label='Register' />;
+    return (
+        <CustomAuthForm
+            fields={registerFields}
+            schema={registerSchema}
+            onSubmit={handleRegister}
+            label="Register"
+        />
+    );
 };
 
 export default Register;

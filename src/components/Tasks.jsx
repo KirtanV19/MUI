@@ -57,7 +57,7 @@ const Users = () => {
     }
 
     return (
-        <div style={{ padding: 20 }}>
+        <div>
             <CustomTable data={items} columns={columns} loading={loading} />
         </div>
     );

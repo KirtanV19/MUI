@@ -1,11 +1,9 @@
 import { Box, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
-const CustomSelect = ({ limit, setLimit, ...props }) => {
+const CustomSelect = ({ limit, setLimit, limitOptions = [], ...props }) => {
     const handleChange = (e) => {
-        const newLimit = Number(e.target.value);
-        console.log("newLimit: ", newLimit);
-        setLimit(newLimit);
-        console.log('limit:-', limit)
+        setLimit(Number(e.target.value));
+        console.log("limit:-", limit);
     };
 
     return (
@@ -13,11 +11,19 @@ const CustomSelect = ({ limit, setLimit, ...props }) => {
             <FormControl fullWidth>
                 <InputLabel>Page</InputLabel>
                 <Select label="Page" value={limit} onChange={handleChange} {...props}>
-                    {[1, 2, 5, 10].map((num) => (
+                    {limitOptions.map((num) => (
                         <MenuItem key={num} value={num}>
                             {num}
                         </MenuItem>
                     ))}
+                    {/* {limitOptions.map((num) => {
+                        const { value, label } = num
+                        return (
+                            <MenuItem key={label ? label : num} value={value ? value : num}>
+                                {num}
+                            </MenuItem>
+                        )
+                    })} */}
                 </Select>
             </FormControl>
         </Box>
