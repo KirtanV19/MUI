@@ -6,8 +6,18 @@ export const fetchUsers = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const response = await api.USERS.getAll(data);
-      console.log("response: ", response);
-      return response;
+      const totalHeader = response.headers["x-total-count"];
+      const total = !isNaN(Number(totalHeader))
+        ? Number(totalHeader)
+        : response.data.length;
+
+      console.log("response:", response);
+      console.log("✔️ total:", total);
+
+      return {
+        data: response.data,
+        total,
+      };
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -19,6 +29,7 @@ const users = createSlice({
   initialState: {
     items: [],
     loading: false,
+    total: 0,
     error: null,
   },
   extraReducers: (builder) => {
@@ -28,9 +39,10 @@ const users = createSlice({
         state.error = null;
       })
       .addCase(fetchUsers.fulfilled, (state, action) => {
-        state.loading = false;
         console.log("action:- ", action);
-        state.items = action.payload;
+        state.items = action.payload.data;
+        state.total = action.payload.total;
+        state.loading = false;
       })
       .addCase(fetchUsers.rejected, (state, action) => {
         state.loading = false;
