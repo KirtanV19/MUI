@@ -10,6 +10,7 @@ import CustomSearch from "../shared/CustomSearch";
 import useSearch from "../hooks/useSearch";
 import useDebounce from "../hooks/useDebounce";
 import usePage from "../hooks/usePage";
+import useSortFilter from "../hooks/useSortFilter";
 
 const Users = () => {
     const { items, loading, error } = useSelector((state) => state.users);
@@ -20,6 +21,11 @@ const Users = () => {
     const { page, setPage } = usePage();
     const debouncedValue = useDebounce(query, 200);
     const { total } = useSelector((state) => state.users);
+    const { sort, setSort } = useSortFilter();
+
+    const sortValue = sort.field ? sort.field : undefined;
+    const orderValue = sort.order ? sort.order : undefined;
+
     useEffect(() => {
         dispatch(fetchUsers({ params: { ...filter } }));
     }, [dispatch, filter]);
@@ -35,11 +41,10 @@ const Users = () => {
             _limit: limit,
             _page: page + 1,
             q: debouncedValue,
+            ...(sortValue && { _sort: sortValue }),
+            ...(orderValue && { _order: orderValue }),
         }));
-    }, [limit, debouncedValue, page, setFilter]);
-
-    // console.log("Users:- ", items);
-    // console.log("limitOptions:- ", limitOptions);
+    }, [limit, debouncedValue, sortValue, orderValue, page, setFilter]);
 
     const columns = [
         {
@@ -64,7 +69,6 @@ const Users = () => {
             flex: 1,
             headerAlign: "center",
             align: "center",
-            disableColumnMenu: true,
         },
     ];
 
@@ -104,6 +108,8 @@ const Users = () => {
                 limit={limit}
                 setPage={setPage}
                 setLimit={setLimit}
+                sort={sort}
+                setSort={setSort}
             />
         </div>
     );

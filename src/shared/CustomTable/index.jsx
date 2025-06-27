@@ -12,6 +12,7 @@ const CustomTable = ({
     limit,
     setPage,
     setLimit,
+    setSort,
     ...props
 }) => {
     console.log("📊 DataGrid Props", {
@@ -55,6 +56,16 @@ const CustomTable = ({
                     onPaginationModelChange={(model) => {
                         setPage?.(model.page);
                         setLimit?.(model.pageSize);
+                    }}
+                    sortingMode="server"
+                    filterMode="server"
+                    onSortModelChange={(sortModel) => {
+                        if (sortModel.length > 0) {
+                            const { field, sort } = sortModel[0];
+                            setSort?.({ field, order: sort });
+                        } else {
+                            setSort?.({ field: "", order: "" });
+                        }
                     }}
                     {...props}
                 />
