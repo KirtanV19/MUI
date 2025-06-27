@@ -7,7 +7,7 @@ import CustomButton from "../shared/CustomButton";
 import useCustomDateRange from "../hooks/useCustomDateRange";
 import DateRangePicker from "./DateRangePicker";
 import useFilter from "../hooks/useFilter";
-
+import { ICONS } from "../assets/index";
 const Tasks = () => {
     const { items, loading, error } = useSelector((state) => state.tasks);
     const dispatch = useDispatch();
@@ -36,15 +36,46 @@ const Tasks = () => {
     console.log("Tasks:- ", items);
 
     const columns = [
-        { field: "title", headerName: "Title", flex: 1 },
-        { field: "description", headerName: "Description", flex: 1 },
-        { field: "status", headerName: "Status", flex: 1 },
-        { field: "dueDate", headerName: "Due Date", flex: 1 },
+        {
+            field: "title",
+            headerName: "Title",
+            flex: 1,
+            headerAlign: "center",
+            align: "center",
+            disableColumnMenu: true,
+        },
+        {
+            field: "description",
+            headerName: "Description",
+            flex: 1,
+            headerAlign: "center",
+            align: "center",
+            disableColumnMenu: true,
+        },
+        {
+            field: "status",
+            headerName: "Status",
+            flex: 1,
+            headerAlign: "center",
+            align: "center",
+            disableColumnMenu: true,
+        },
+        {
+            field: "dueDate",
+            headerName: "Due Date",
+            flex: 1,
+            headerAlign: "center",
+            align: "center",
+            disableColumnMenu: true,
+        },
         {
             field: "actions",
             headerName: "Action",
             flex: 1,
+            headerAlign: "center",
+            align: "center",
             sortable: false,
+            disableColumnMenu: true,
             renderCell: () => (
                 <Box
                     sx={{
@@ -58,14 +89,13 @@ const Tasks = () => {
                         size="small" // use custom-class
                         onClick={() => alert("accept")}
                     >
-                        Accept
+                        <ICONS.Check /> Accept
                     </CustomButton>
                     <CustomButton
-                        variant="text"
                         size="small" // use custom-class
                         onClick={() => alert("reject")}
                     >
-                        Reject
+                        <ICONS.Clear /> Reject
                     </CustomButton>
                 </Box>
             ),

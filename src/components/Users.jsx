@@ -42,12 +42,31 @@ const Users = () => {
     // console.log("limitOptions:- ", limitOptions);
 
     const columns = [
-        { field: "name", headerName: "Name", flex: 1 },
-        { field: "email", headerName: "Email", flex: 1 },
-        { field: "role", headerName: "Role", flex: 1 },
+        {
+            field: "name",
+            headerName: "Name",
+            flex: 1,
+            headerAlign: "center", // Center the Column-Cell
+            align: "center", // Center the Row-cell
+            disableColumnMenu: true,
+        },
+        {
+            field: "email",
+            headerName: "Email",
+            flex: 1,
+            headerAlign: "center",
+            align: "center",
+            disableColumnMenu: true,
+        },
+        {
+            field: "role",
+            headerName: "Role",
+            flex: 1,
+            headerAlign: "center",
+            align: "center",
+            disableColumnMenu: true,
+        },
     ];
-
-    // console.log('filter:- ', filter)
 
     if (error) {
         return <p style={{ color: "red", textAlign: "center" }}>Error: {error}</p>;
