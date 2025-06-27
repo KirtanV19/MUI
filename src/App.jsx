@@ -3,7 +3,7 @@ import theme from "./theme/theme";
 import { CssBaseline } from "@mui/material";
 import { Routes, Route } from "react-router";
 import Users from "./components/Users";
-import Tasks from "./components/Tasks";
+import Tasks from "./components/Tasks"
 import NewNavbar from "./components/NewNavbar";
 import Logout from "./components/Logout";
 import { BrowserRouter } from "react-router";

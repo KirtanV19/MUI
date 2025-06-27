@@ -76,13 +76,13 @@ const Users = () => {
                 />
             </Box>
             <CustomTable
-                data={items}
+                rows={items}
                 columns={columns}
                 loading={loading}
                 limitOptions={limitOptions}
                 rowCount={total}
                 page={page}
-                pageSize={limit}
+                limit={limit}
                 setPage={setPage}
                 setLimit={setLimit}
             />

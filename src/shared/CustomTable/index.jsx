@@ -3,23 +3,23 @@ import { Box, CircularProgress, Typography } from "@mui/material";
 
 const CustomTable = ({
     height = 500,
-    data = [],
+    rows = [],
     columns = [],
     loading,
     rowCount,
     limitOptions,
     page,
-    pageSize,
+    limit,
     setPage,
     setLimit,
     ...props
 }) => {
     console.log("📊 DataGrid Props", {
-        rows: data,
+        rows,
         columns,
         rowCount,
         page,
-        pageSize,
+        limit,
         limitOptions,
     });
     return (
@@ -35,13 +35,13 @@ const CustomTable = ({
                 >
                     <CircularProgress />
                 </Box>
-            ) : data.length === 0 ? (
+            ) : rows.length === 0 ? (
                 <Typography textAlign="center" mt={4}>
                     No records found.
                 </Typography>
             ) : (
                 <DataGrid
-                    rows={data}
+                    rows={rows}
                     loading={loading}
                     columns={columns}
                     pagination
@@ -50,7 +50,7 @@ const CustomTable = ({
                     rowCount={rowCount}
                     paginationModel={{
                         page: page,
-                        pageSize: pageSize,
+                        pageSize: limit,
                     }}
                     onPaginationModelChange={(model) => {
                         setPage?.(model.page);
