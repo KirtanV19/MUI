@@ -1,17 +1,21 @@
 import CustomAuthForm from "../shared/CustomAuthForm";
 import { registerFields } from "../utils/formFields";
 import { registerSchema } from "../utils/validations";
-import { api } from "../api/client";
+import { registerUser } from "../redux/slices/user.slices";
+import { useDispatch } from "react-redux";
 
 const Register = () => {
+    const dispatch = useDispatch();
+
     const handleRegister = async (data) => {
         try {
             const userData = {
                 ...data,
                 userId: Date.now(),
             };
+            await dispatch(registerUser(userData)).unwrap();
             console.log("User Data:- ", userData);
-            await api.USERS.create({ data: userData });
+
         } catch (error) {
             console.error("Registration failed:", error);
         }

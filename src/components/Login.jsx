@@ -1,21 +1,28 @@
 import CustomAuthForm from "../shared/CustomAuthForm";
 import { loginFields } from "../utils/formFields";
 import { loginSchema } from "../utils/validations";
-import { api } from "../api/client";
+import { loginUser } from "../redux/slices/user.slices";
+import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const handleSubmit = async (values) => {
-        console.log("data", values);
+        console.log('values', values)
         try {
-            const response = await api.USERS.getAll({
-                params: {
-                    email: values.email,
-                    password: values.password,
-                },
-            });
-            console.log("Login successful:", response);
+            const userData = {
+                email: values.email,
+                password: values.password,
+            };
+            await dispatch(loginUser(userData)).unwrap();
+            navigate("/");
         } catch (error) {
             console.error("Login failed:", error);
+            navigate("/forgot");
+            // Optionally, you can show an error message to the user
+            // For example, using a toast notification or an alert
         }
     };
 

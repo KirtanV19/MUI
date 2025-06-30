@@ -44,7 +44,8 @@ export const loginUser = createAsyncThunk(
         params: { email, password },
       });
       console.log("response: ", response);
-      const user = response?.[0];
+      const user = response?.data?.[0];
+      console.log("user: ", user);
       if (!user || user.password !== password) {
         return rejectWithValue("Invalid credentials");
       }

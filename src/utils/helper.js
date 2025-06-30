@@ -28,5 +28,4 @@ export const getPasswordStrength = (password) => {
 export const navItems = [
   { id: "users", label: "Users", icon: ICONS.Person },
   { id: "tasks", label: "Tasks", icon: ICONS.Assignment },
-  { id: "logout", label: "Logout", icon: ICONS.Logout },
 ];

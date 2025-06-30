@@ -16,7 +16,6 @@ import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import { navItems } from "../utils/helper";
 import Users from "./Users";
 import Tasks from "./Tasks";
-import Logout from "./Logout";
 
 const Navbar = () => {
     const theme = useTheme();
@@ -37,7 +36,6 @@ const Navbar = () => {
     const componentsMap = {
         users: <Users />,
         tasks: <Tasks />,
-        logout: <Logout />,
     };
 
     return (
