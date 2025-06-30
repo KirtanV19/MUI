@@ -23,6 +23,14 @@
       "role": "user",
       "userId": 1750154236758,
       "id": 3
+    },
+    {
+      "name": "User",
+      "email": "user@gmail.com",
+      "password": "User@123",
+      "role": "user",
+      "userId": 1751266324866,
+      "id": 4
     }
   ],
   "tasks": [

@@ -1,12 +1,22 @@
-// Current user will visible here and through that we write logiinSchema.
-// and aslo handleSumit will implementing
-
 import CustomAuthForm from "../shared/CustomAuthForm";
 import { loginFields } from "../utils/formFields";
 import { loginSchema } from "../utils/validations";
+import { api } from "../api/client";
+
 const Login = () => {
-    const handleSubmit = (data) => {
-        console.log("data", data);
+    const handleSubmit = async (values) => {
+        console.log("data", values);
+        try {
+            const response = await api.USERS.getAll({
+                params: {
+                    email: values.email,
+                    password: values.password,
+                },
+            });
+            console.log("Login successful:", response);
+        } catch (error) {
+            console.error("Login failed:", error);
+        }
     };
 
     return (
