@@ -8,7 +8,7 @@ import {
     FormLabel,
     FormControlLabel,
     Radio,
-    MenuItem
+    MenuItem,
 } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -140,13 +140,20 @@ const CustomAuthForm = ({ fields, schema, onSubmit, label }) => {
                                     }
                                     if (component === "date") {
                                         return (
-                                            <CustomSingleDatePicker
-                                                {...field}
-                                                label={label}
-                                                value={field.value ?? null}
-                                                error={!!errors[name]}
-                                                onChange={field.onChange}
-                                            />
+                                            <>
+                                                <CustomSingleDatePicker
+                                                    {...field}
+                                                    label={label}
+                                                    value={field.value ?? null}
+                                                    error={!!errors[name]}
+                                                    onChange={field.onChange}
+                                                />
+                                                {errors[name] && (
+                                                    <span style={{ color: "#f44336", fontSize: 12 }}>
+                                                        {errors[name]?.message}
+                                                    </span>
+                                                )}
+                                            </>
                                         );
                                     }
                                     if (component === "select") {
@@ -164,6 +171,11 @@ const CustomAuthForm = ({ fields, schema, onSubmit, label }) => {
                                                         </MenuItem>
                                                     ))}
                                                 </CustomTextField>
+                                                {errors[name] && (
+                                                    <span style={{ color: "#f44336", fontSize: 12 }}>
+                                                        {errors[name]?.message}
+                                                    </span>
+                                                )}
                                             </>
                                         );
                                     }

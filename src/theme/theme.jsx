@@ -81,24 +81,24 @@ const theme = createTheme({
             },
         },
         /*
-                MuiDataGrid: {
-                    defaultProps: {
-                        autoHeight: true,
-                    },
-                    styleOverrides: {
-                        columnHeaders: {
-                            fontWeight: 700,
-                            fontSize: "1rem",
-                            backgroundColor: "#f5f5f5",
-                        },
-                        row: {
-                            "& .hover": {
-                                backgroundColor: COLORS.ACCENT.main,
+                        MuiDataGrid: {
+                            defaultProps: {
+                                autoHeight: true,
+                            },
+                            styleOverrides: {
+                                columnHeaders: {
+                                    fontWeight: 700,
+                                    fontSize: "1rem",
+                                    backgroundColor: "#f5f5f5",
+                                },
+                                row: {
+                                    "& .hover": {
+                                        backgroundColor: COLORS.ACCENT.main,
+                                    },
+                                },
                             },
                         },
-                    },
-                },
-            */
+                    */
         MuiDataGrid: {
             styleOverrides: {
                 root: {
@@ -151,8 +151,8 @@ const theme = createTheme({
         },
         MuiSelect: {
             defaultProps: {
-                variant: 'outlined'
-            }
+                variant: "outlined",
+            },
         },
         MuiDatePicker: {
             defaultProps: {
@@ -168,6 +168,11 @@ const theme = createTheme({
                 root: {
                     width: "100%",
                 },
+            },
+        },
+        MuiMenuItem: {
+            defaultProps: {
+                disableRipple: true,
             },
         },
     },
