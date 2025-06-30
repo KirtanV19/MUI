@@ -18,6 +18,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CustomButton from "../shared/CustomButton";
 import { logout } from "../redux/slices/user.slices";
 import { useNavigate } from "react-router";
+import UserDashboard from "./UserDashboard";
 
 const drawerWidth = 200;
 
@@ -47,47 +48,51 @@ const NewNavbar = () => {
                     </AppBar>
 
                     {currentUser.role === "admin" && (
-                        // Sidebar Drawer
-                        <Drawer
-                            variant="permanent"
-                            sx={{
-                                width: drawerWidth,
-                                [`& .MuiDrawer-paper`]: {
+                        <>
+                            {/* Sidebar Drawer */}
+                            <Drawer
+                                variant="permanent"
+                                sx={{
                                     width: drawerWidth,
-                                    boxSizing: "border-box",
-                                },
-                            }}
-                        >
-                            <Toolbar /> {/*  spacer so list starts below AppBar */}
-                            <List>
-                                {navItems.map(({ id, label, icon: Icon }, index) => (
-                                    <ListItem key={index} disablePadding>
-                                        <ListItemButton
-                                            component={Link}
-                                            to={`/${id}`}
-                                            selected={pathname === `/${id}`}
-                                        >
-                                            {Icon && (
-                                                <ListItemIcon sx={{ minWidth: 40 }}>
-                                                    <Icon />
-                                                </ListItemIcon>
-                                            )}
-                                            <ListItemText primary={label} />
-                                        </ListItemButton>
-                                    </ListItem>
-                                ))}
-                            </List>
-                        </Drawer>
+                                    [`& .MuiDrawer-paper`]: {
+                                        width: drawerWidth,
+                                        boxSizing: "border-box",
+                                    },
+                                }}
+                            >
+                                <Toolbar /> {/*  spacer so list starts below AppBar */}
+                                <List>
+                                    {navItems.map(({ id, label, icon: Icon }, index) => (
+                                        <ListItem key={index} disablePadding>
+                                            <ListItemButton
+                                                component={Link}
+                                                to={`/${id}`}
+                                                selected={pathname === `/${id}`}
+                                            >
+                                                {Icon && (
+                                                    <ListItemIcon sx={{ minWidth: 40 }}>
+                                                        <Icon />
+                                                    </ListItemIcon>
+                                                )}
+                                                <ListItemText primary={label} />
+                                            </ListItemButton>
+                                        </ListItem>
+                                    ))}
+                                </List>
+                            </Drawer>
+
+                            {/* Main Content Placeholder */}
+                            <Box
+                                component="main"
+                                sx={{ flexGrow: 1, p: 3, ml: { sm: `${drawerWidth}px` } }}
+                            >
+                                <Toolbar /> {/* pushes below AppBar */}
+                                <Outlet /> {/* ← child routes render here */}
+                            </Box>
+                        </>
                     )}
 
-                    {/* Main Content Placeholder */}
-                    <Box
-                        component="main"
-                        sx={{ flexGrow: 1, p: 3, ml: { sm: `${drawerWidth}px` } }}
-                    >
-                        <Toolbar /> {/* pushes below AppBar */}
-                        <Outlet /> {/* ← child routes render here */}
-                    </Box>
+                    {currentUser.role === "user" && <UserDashboard />}
                 </Box>
             ) : (
                 <Box sx={{ flexGrow: 1 }}>

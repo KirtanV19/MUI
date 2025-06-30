@@ -10,14 +10,17 @@ const Login = () => {
     const dispatch = useDispatch();
 
     const handleSubmit = async (values) => {
-        console.log('values', values)
+        console.log("values", values);
         try {
             const userData = {
                 email: values.email,
                 password: values.password,
             };
+            console.log("userData: ", userData);
+
             await dispatch(loginUser(userData)).unwrap();
             navigate("/");
+            // navigate("/dashboard"); // Redirect to dashboard after successful login
         } catch (error) {
             console.error("Login failed:", error);
             navigate("/forgot");

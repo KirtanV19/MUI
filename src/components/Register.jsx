@@ -3,10 +3,11 @@ import { registerFields } from "../utils/formFields";
 import { registerSchema } from "../utils/validations";
 import { registerUser } from "../redux/slices/user.slices";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 
 const Register = () => {
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
     const handleRegister = async (data) => {
         try {
             const userData = {
@@ -15,7 +16,7 @@ const Register = () => {
             };
             await dispatch(registerUser(userData)).unwrap();
             console.log("User Data:- ", userData);
-
+            navigate("/login");
         } catch (error) {
             console.error("Registration failed:", error);
         }
