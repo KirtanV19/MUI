@@ -154,6 +154,22 @@ const theme = createTheme({
                 variant: 'outlined'
             }
         },
+        MuiDatePicker: {
+            defaultProps: {
+                slotProps: {
+                    textField: {
+                        variant: "outlined",
+                        size: "small",
+                        fullWidth: true,
+                    },
+                },
+            },
+            styleOverrides: {
+                root: {
+                    width: "100%",
+                },
+            },
+        },
     },
 });
 

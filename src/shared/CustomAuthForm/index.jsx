@@ -8,13 +8,16 @@ import {
     FormLabel,
     FormControlLabel,
     Radio,
+    MenuItem
 } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import CustomButton from '../CustomButton/index'
-import CustomTextField from '../CustomTextField/index'
+import CustomButton from "../CustomButton/index";
+import CustomTextField from "../CustomTextField/index";
 import { useState } from "react";
 import { getPasswordStrength } from "../../utils/helper";
+import CustomSingleDatePicker from "../CustomSingleDatePicker";
+
 const CustomAuthForm = ({ fields, schema, onSubmit, label }) => {
     const [passwordValue, setPasswordValue] = useState("");
     const [showPassword, setShowPassword] = useState(false);
@@ -135,7 +138,35 @@ const CustomAuthForm = ({ fields, schema, onSubmit, label }) => {
                                             </FormControl>
                                         );
                                     }
-
+                                    if (component === "date") {
+                                        return (
+                                            <CustomSingleDatePicker
+                                                {...field}
+                                                label={label}
+                                                value={field.value ?? null}
+                                                error={!!errors[name]}
+                                                onChange={field.onChange}
+                                            />
+                                        );
+                                    }
+                                    if (component === "select") {
+                                        return (
+                                            <>
+                                                <CustomTextField
+                                                    {...field}
+                                                    label={label}
+                                                    select
+                                                    error={!!errors[name]}
+                                                >
+                                                    {options.map((option) => (
+                                                        <MenuItem key={option} value={option}>
+                                                            {option.charAt(0).toUpperCase() + option.slice(1)}
+                                                        </MenuItem>
+                                                    ))}
+                                                </CustomTextField>
+                                            </>
+                                        );
+                                    }
                                     return null;
                                 }}
                             />

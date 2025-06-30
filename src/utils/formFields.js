@@ -60,3 +60,31 @@ export const forgotPassFields = [
     component: "password",
   },
 ];
+
+export const taskFields = [
+  {
+    name: "title",
+    label: "Enter Task",
+    type: "text",
+    component: "text",
+  },
+  {
+    name: "description",
+    label: "Enter description",
+    type: "text",
+    component: "text",
+  },
+  {
+    name: "dueDate",
+    label: "Enter Due Date",
+    type: "date",
+    component: "date",
+  },
+  {
+    name: "status",
+    label: "Status of Task",
+    type: "select",
+    options: ["pending"],
+    component: "select",
+  },
+];

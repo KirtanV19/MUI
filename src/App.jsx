@@ -12,6 +12,7 @@ import { Provider } from "react-redux";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import ForgotPassword from "./components/ForgotPassword";
+import TaskCreation from "./components/TaskCreation";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forgot" element={<ForgotPassword />} />
+            <Route path="/create" element={<TaskCreation />} />
           </Routes>
         </ThemeProvider>
       </Provider>
