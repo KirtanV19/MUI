@@ -1,26 +1,33 @@
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme/theme";
 import { CssBaseline } from "@mui/material";
-import { Routes, Route } from "react-router";
-import Users from "./components/Users";
-import Tasks from "./components/Tasks";
-import NewNavbar from "./components/NewNavbar";
-import { BrowserRouter } from "react-router";
+import { BrowserRouter } from "react-router-dom";
 import store from "./redux/store";
 import { Provider } from "react-redux";
-import Register from "./components/Register";
-import Login from "./components/Login";
-import ForgotPassword from "./components/ForgotPassword";
-import TaskCreation from "./components/TaskCreation";
-import UserDashboard from "./components/UserDashboard";
+import Routing from "./routes/index";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistor } from "./redux/store";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Routes>
+        <PersistGate loading={null} persistor={persistor}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Routing />
+          </ThemeProvider>
+        </PersistGate>
+      </Provider>
+    </BrowserRouter>
+  );
+};
+
+export default App;
+
+{
+  /*
+  <Routes>
             <Route path="/" element={<NewNavbar />}>
               <Route path="users" element={<Users />} />
               <Route path="tasks" element={<Tasks />} />
@@ -31,11 +38,7 @@ const App = () => {
             <Route path="/create" element={<TaskCreation />} />
             <Route path="/dashboard" element={<UserDashboard />} />
             <Route path="*" element={<h1>Page Not Found</h1>} />
-          </Routes>
-        </ThemeProvider>
-      </Provider>
-    </BrowserRouter>
-  );
-};
-
-export default App;
+  </Routes> 
+         
+*/
+}

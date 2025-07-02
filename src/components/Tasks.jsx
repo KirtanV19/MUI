@@ -107,7 +107,7 @@ const Tasks = () => {
     }
 
     return (
-        <div>
+        <Box sx={{ width: '100%' }}>
             <DateRangePicker
                 startDate={startDate}
                 endDate={endDate}
@@ -115,7 +115,7 @@ const Tasks = () => {
                 setEndDate={setEndDate}
             />
             <CustomTable rows={items} columns={columns} loading={loading} />
-        </div>
+        </Box>
     );
 };
 

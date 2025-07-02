@@ -1,4 +1,5 @@
 //  Clipped drawer
+
 import {
     Box,
     AppBar,
@@ -13,12 +14,12 @@ import {
     ListItemIcon,
 } from "@mui/material";
 import { navItems } from "../utils/helper";
-import { Link, useLocation, Outlet } from "react-router";
+import { Link, useLocation, Outlet, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import CustomButton from "../shared/CustomButton";
 import { logout } from "../redux/slices/user.slices";
-import { useNavigate } from "react-router";
 import UserDashboard from "./UserDashboard";
+import { URLS } from "../utils/urls";
 
 const drawerWidth = 200;
 
@@ -29,7 +30,7 @@ const NewNavbar = () => {
     const { currentUser } = useSelector((state) => state.users);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    console.log("currentUser:- ", currentUser);
+    console.log("NewNavbar Current User:- ", currentUser);
 
     return (
         <>
@@ -92,18 +93,23 @@ const NewNavbar = () => {
                         </>
                     )}
 
-                    {currentUser.role === "user" && <UserDashboard />}
+                    {currentUser.role === "user" && (
+                        <Box component="main" sx={{ flexGrow: 1, p: 3, width: "100%" }}>
+                            <Toolbar />
+                            <UserDashboard /> {/* Direct render for user */}
+                        </Box>
+                    )}
                 </Box>
             ) : (
                 <Box sx={{ flexGrow: 1 }}>
                     <AppBar position="static">
                         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-                            <Typography>Please log in</Typography>
+                            <Typography>Taskmaster</Typography>
                             <Box sx={{ display: "flex", gap: 1 }}>
-                                <CustomButton onClick={() => navigate("/login")}>
+                                <CustomButton onClick={() => navigate(URLS.LOGIN)}>
                                     Login
                                 </CustomButton>
-                                <CustomButton onClick={() => navigate("/register")}>
+                                <CustomButton onClick={() => navigate(URLS.REGISTER)}>
                                     Register
                                 </CustomButton>
                             </Box>

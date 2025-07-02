@@ -3,9 +3,8 @@ export const URLS = {
   TASKS: "/tasks",
   INITIAL: "/",
   LOGIN: "/login",
-  LOGOUT: "/logout",
   FORGOT: "/forgot",
   DASHBOARD: "/dashboard",
-  USERDASHBOARD: "/user-dashboard",
+  CREATE: "/create",
   REGISTER: "/register",
 };

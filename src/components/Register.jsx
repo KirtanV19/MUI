@@ -3,7 +3,7 @@ import { registerFields } from "../utils/formFields";
 import { registerSchema } from "../utils/validations";
 import { registerUser } from "../redux/slices/user.slices";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
     const dispatch = useDispatch();

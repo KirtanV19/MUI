@@ -13,12 +13,15 @@ import usePage from "../hooks/usePage";
 import useSortFilter from "../hooks/useSortFilter";
 import useLimit from "../hooks/useLimit";
 import useDebounce from "../hooks/useDebounce";
+import { useNavigate } from "react-router-dom";
+import { URLS } from "../utils/urls";
 
 const UserDashboard = () => {
     const { currentUser, total } = useSelector((state) => state.users);
     const { items, loading, error } = useSelector((state) => state.tasks);
     console.log("currentUser: ", currentUser);
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const [filter, setFilter] = useState({ userId: currentUser.userId });
     const { startDate, endDate, setStartDate, setEndDate } = useCustomDateRange();
     const { query, setQuery } = useSearch();
@@ -119,7 +122,7 @@ const UserDashboard = () => {
                 }}
             >
                 <Typography>My Tasks</Typography>
-                <CustomButton>New Task</CustomButton>
+                <CustomButton onClick={() => navigate(URLS.CREATE)}>New Task</CustomButton>
             </Box>
             <Box>
                 <CustomSelect

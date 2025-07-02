@@ -77,7 +77,7 @@ const Users = () => {
     }
 
     return (
-        <div>
+        <Box sx={{ width: '100%' }}>
             <Box
                 sx={{
                     display: "flex",
@@ -111,7 +111,7 @@ const Users = () => {
                 sort={sort}
                 setSort={setSort}
             />
-        </div>
+        </Box>
     );
 };
 
