@@ -19,7 +19,7 @@ import { logout } from "../redux/slices/user.slices";
 import UserDashboard from "./UserDashboard";
 import { URLS } from "../utils/urls";
 
-const drawerWidth = 200;
+const drawerWidth = 180;
 
 const HomePage = () => {
     const theme = useTheme();
@@ -105,8 +105,9 @@ const HomePage = () => {
                     sx={{
                         flexGrow: 1,
                         p: 3,
-                        ml: { sm: `${drawerWidth}px` },
+                        // ml: { sm: `${drawerWidth / 8}px`, md: `${drawerWidth / 4}px`, lg: `${drawerWidth / 2}px` },
                     }}
+
                 >
                     <Toolbar />
                     <Outlet />
