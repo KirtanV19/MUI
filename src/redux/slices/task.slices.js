@@ -36,6 +36,33 @@ export const createTask = createAsyncThunk(
   }
 );
 
+export const updateTaskStatus = createAsyncThunk(
+  "tasks/updatetaskstatus",
+  async ({ id, data }, { rejectWithValue }) => {
+    try {
+      const response = await api.TASKS.patch({ id, data });
+      console.log("response: ", response);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+/*
+export const updateTask = createAsyncThunk(
+  "tasks/updatetask",
+  async ({ id, data }, { rejectWithValue }) => {
+    try {
+      const response = await api.TASKS.patch({ id, data });
+      console.log("response: ", response);
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+*/
+
 const tasks = createSlice({
   name: "tasks",
   initialState: {
@@ -69,6 +96,26 @@ const tasks = createSlice({
         state.loading = false;
       })
       .addCase(createTask.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+    builder
+      .addCase(updateTaskStatus.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateTaskStatus.fulfilled, (state, action) => {
+        state.loading = false;
+        console.log("action: ", action);
+
+        const idx = state.items.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        if (idx !== -1) {
+          state.items[idx] = { ...state.items[idx], ...action.payload };
+        }
+      })
+      .addCase(updateTaskStatus.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

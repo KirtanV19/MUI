@@ -8,6 +8,8 @@ import useCustomDateRange from "../hooks/useCustomDateRange";
 import DateRangePicker from "./DateRangePicker";
 import useFilter from "../hooks/useFilter";
 import { ICONS } from "../assets/index";
+import { updateTaskStatus } from "../redux/slices/task.slices";
+
 const Tasks = () => {
     const { items, loading, error } = useSelector((state) => state.tasks);
     const dispatch = useDispatch();
@@ -16,6 +18,22 @@ const Tasks = () => {
 
     const start = startDate ? startDate.format("YYYY-MM-DD") : undefined;
     const end = endDate ? endDate.format("YYYY-MM-DD") : undefined;
+
+    const handleAccept = (params) => {
+        console.log('params: ', params);
+        const { row } = params;
+        console.log('row', row);
+
+        dispatch(updateTaskStatus({ id: row.id, data: { status: "accepted" } }));
+    };
+
+    const handleReject = (params) => {
+        console.log('params: ', params);
+
+        const { row } = params;
+        console.log('row', row);
+        dispatch(updateTaskStatus({ id: row.id, data: { status: "rejected" } }));
+    };
 
     useEffect(() => {
         dispatch(
@@ -76,7 +94,7 @@ const Tasks = () => {
             align: "center",
             sortable: false,
             disableColumnMenu: true,
-            renderCell: () => (
+            renderCell: (params) => (
                 <Box
                     sx={{
                         display: "flex",
@@ -87,13 +105,13 @@ const Tasks = () => {
                     <CustomButton
                         variant="outlined"
                         size="small" // use custom-class
-                        onClick={() => alert("accept")}
+                        onClick={() => handleAccept(params)}
                     >
                         <ICONS.Check /> Accept
                     </CustomButton>
                     <CustomButton
                         size="small" // use custom-class
-                        onClick={() => alert("reject")}
+                        onClick={() => handleReject(params)}
                     >
                         <ICONS.Clear /> Reject
                     </CustomButton>
